@@ -8,6 +8,7 @@ class MovieGenreInline(admin.TabularInline):
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('title', )
     inlines = [MovieGenreInline]
+    list_filter = ('genres',)
 
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('name',)
