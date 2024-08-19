@@ -1,6 +1,20 @@
 from django.contrib import admin
+from .models import Movie, Genre, MovieGenre
 
-from .models import Genre, Movie
+class MovieGenreInline(admin.TabularInline):
+    model = MovieGenre
+    extra = 1
 
-admin.site.register(Movie)
-admin.site.register(Genre)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ('title', )
+    inlines = [MovieGenreInline]
+
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+class MovieGenreAdmin(admin.ModelAdmin):
+    list_display = ('movie', 'genre')
+
+admin.site.register(Movie, MovieAdmin)
+admin.site.register(Genre, GenreAdmin)
+admin.site.register(MovieGenre, MovieGenreAdmin)
