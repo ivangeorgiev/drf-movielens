@@ -1,8 +1,9 @@
 import pytest
 from movies.models import Genre, Movie
 
+pytestmark = [pytest.mark.django_db]
 
-@pytest.mark.django_db
+
 class TestMovie:
     def test_can_create_movie(self):
         movie = Movie.objects.create(title="Movie 1")
@@ -25,7 +26,7 @@ class TestMovie:
     def test_can_access_movies_from_genre(self, movie_with_genre: Movie, genre: Genre):
         assert [movie_with_genre] == list(genre.movies.all())
 
-@pytest.mark.django_db
+
 class TestGenre:
     def test_can_get_genre_by_id(self, genre: Genre):
         actual_genre = Genre.objects.get(id=genre.id)
