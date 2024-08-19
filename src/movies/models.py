@@ -15,7 +15,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    genres = models.ManyToManyField(Genre, through="MovieGenre")
+    genres = models.ManyToManyField(Genre, through="MovieGenre", related_name="movies")
 
     class Meta:
         db_table = "ml_movie"
